@@ -53,23 +53,36 @@ Output: 0 '''
     
 #print (lenoflong(0,'pwwkew'))
 
-# O(n*n)
-def lengthOfLongestSubstring(s):
-    newStr = ""
-    lengthoglongest = 0
-    for c in s:
-        while c in newStr:
-            newStr = newStr[1:]
-        newStr += c
-        if len(newStr) > lengthoglongest:
-            lengthoglongest = len(newStr)
-    return lengthoglongest
+# # O(n*n)
+# def lengthOfLongestSubstring(s):
+#     newStr = ""
+#     lengthoglongest = 0
+#     for c in s:
+#         while c in newStr:
+#             newStr = newStr[1:]
+#         newStr += c
+#         if len(newStr) > lengthoglongest:
+#             lengthoglongest = len(newStr)
+#     return lengthoglongest
     
         
-print(lengthOfLongestSubstring("abcabcdb"))    
-print(lengthOfLongestSubstring("bbbbb"))
-print(lengthOfLongestSubstring("pwwkew"))
-print(lengthOfLongestSubstring(""))
-print(lengthOfLongestSubstring("dvdf"))
 
-    
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        str_list = []
+        max_len = 0
+        
+        for x in s:
+            if x in str_list:
+                str_list = str_list[str_list.index(x)+1:]
+            
+            str_list.append(x)
+            max_len = max(max_len, len(str_list))
+        return max_len    
+obj = Solution()
+print(obj.lengthOfLongestSubstring("abcabcdb"))    
+print(obj.lengthOfLongestSubstring("bbbbb"))
+print(obj.lengthOfLongestSubstring("pwwkew"))
+print(obj.lengthOfLongestSubstring(""))
+print(obj.lengthOfLongestSubstring("dvdf"))
